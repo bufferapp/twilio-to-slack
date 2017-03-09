@@ -4,18 +4,13 @@ A basic service that relays a Twilio SMS message to a Slack webhook.
 
 ## Development
 
-To run the app locally install Node and [nodemon](https://www.npmjs.com/package/nodemon), then
-install all the dependencies:
-
-```
-npm install
-```
+To run the app locally install Go and run this:
 
 ```
 SLACK_WEBHOOK_URL="https://hooks.slack.com/services/12345/123456/3456789034567" \
 BOT_USERNAME="SMS Relay bot" \
 PORT="8080" \
-nodemon index.js
+go run main.go
 ```
 
 Testing the app can be done with a curl request:
@@ -26,14 +21,16 @@ curl -X POST -d '{"Body": "This is the sms body text", "From": "12345"}' http://
 
 [Ngrok](https://ngrok.com/) can also be helpful for local development
 
-## Docker build and deploy
+## Build
 
-Build and push the image to Docker hub:
+Compile the binary then add to the minimal Docker image:
 
 ```
-docker build -t bufferapp/twilio-to-slack:1.0.0 .
-docker push bufferapp/twilio-to-slack:1.0.0 .
+CGO_ENABLED=0 GOOS=linux go build -a -tags netgo -ldflags '-w' .
+docker build -t bufferapp/twilio-to-slack .
 ```
+
+More information about this build [here](https://github.com/kelseyhightower/contributors).
 
 ### License
 
