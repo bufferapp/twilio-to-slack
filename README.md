@@ -21,7 +21,10 @@ nodemon index.js
 Testing the app can be done with a curl request:
 
 ```
-curl -X POST -d '{"Body": "This is the sms body text", "From": "12345"}' http://localhost:8080/sms
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"Body": "Here you go 🌺", "From": "1-800-FLOWERS"}' \
+  http://localhost:8080/sms
 ```
 
 [Ngrok](https://ngrok.com/) can also be helpful for local development
