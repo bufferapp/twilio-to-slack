@@ -1,15 +1,6 @@
-FROM node:6.10.0-alpine
-
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-ENV NODE_ENV production
-
-COPY package.json /usr/src/app/
-RUN npm install
-COPY . /usr/src/app
-
+FROM golang:1.7-alpine
+MAINTAINER Dan Farrelly <dan@buffer.com>
+ADD twilio-to-slack twilio-to-slack
 ENV PORT 8080
 EXPOSE 8080
-
-CMD ["node", "./index.js"]
+ENTRYPOINT ["/twilio-to-slack"]
