@@ -38,4 +38,4 @@ app.use((req, res) => res.end('OK'))
 
 http.createServer(app).listen(PORT)
 
-console.log('Started application successfully')
+console.log(`Started application successfully on port ${PORT}`)
