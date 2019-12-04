@@ -38,6 +38,12 @@ docker build -t bufferapp/twilio-to-slack:1.0.0 .
 docker push bufferapp/twilio-to-slack:1.0.0 .
 ```
 
+Test your container locally by running this command:
+
+```
+docker run -p 8080:8080 --env-file .env bufferapp/twilio-to-slack:1.0.0
+```
+
 ### License
 
 MIT
